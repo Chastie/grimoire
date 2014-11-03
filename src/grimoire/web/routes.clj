@@ -7,6 +7,10 @@
             [ring.util.response :as response]
             [taoensso.timbre :as timbre :refer [info warn]]))
 
+;; FIXME: Do I want to try and build "things" here in the routing
+;; rather than parsing back and forth using the string path
+;; representation? Probably should..
+
 (defroutes store
     (context ["/store"] []
     (GET "/" {uri :uri}
@@ -88,6 +92,8 @@
        (fn [{uri :uri}]
          (warn (pr-str {:uri uri}))
          (v.e/error-unknown-group groupid))))))
+
+;; FIXME: Implement rather than stub
 
 (defroutes api-v0
   (context ["/api/v0"] []
